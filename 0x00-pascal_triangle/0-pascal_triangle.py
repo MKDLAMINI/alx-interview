@@ -1,17 +1,22 @@
 #!/usr/bin/python3
+"""
+defining pascal triangle function
+"""
+
 
 def pascal_triangle(n):
-    if n <= 0:
-        return []
-
-    triangle = [[1]]
-
-    for a in range(1, n):
-        row = [1]
-
-        for b in range(1, a):
-            row.append(triangle[a-1][b-1] + triangle[a-1][b])
-        row.append(1)
+    """ returns a list of lists of integers
+    """
+    triangle = []
+    for i in range(1, n+1):
+        row = []
+        for j in range(i):
+            if j == 0 or j == i-1:
+                n = 1
+                row.append(n)
+            else:
+                n = triangle[i-2][j-1] + triangle[i-2][j]
+                row.append(n)
         triangle.append(row)
 
     return triangle
